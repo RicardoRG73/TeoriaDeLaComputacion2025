@@ -4,6 +4,91 @@
 using Markdown
 using InteractiveUtils
 
+# ╔═╡ c8c8b862-4876-4c51-8fe3-b84cbf2e7b19
+md"# Conprenhentions"
+
+# ╔═╡ 79b2cc2d-b57a-4f89-a39c-ba468b2c13f8
+md"## Creando un vector"
+
+# ╔═╡ db0c9e40-98e0-4bba-b4c6-cfeed394fbea
+begin
+	vec = []
+	for elem in 1:5
+		append!(vec, elem)
+	end
+	vec
+end
+
+# ╔═╡ 28dbd317-4548-4ab6-902b-a11796c8bada
+[elem for elem in 1:5]
+
+# ╔═╡ fb1f4842-75aa-4587-ac55-c7c944ff4f4d
+md"## Creando una matriz"
+
+# ╔═╡ ac2b3718-51bc-45a5-a063-c4122bda6659
+begin
+	vec2 = []
+	for elem in 1:5
+		for k in 2:2:6
+			append!(vec2, elem * k)
+		end
+	end
+	vec2
+end
+
+# ╔═╡ a404b63c-3396-459f-93d3-50a1e4e2562b
+[elem * k for elem in 1:5 for k in 2:2:6]
+
+# ╔═╡ a6d3d97c-9beb-48af-9cfe-177e710d36b5
+begin
+	mat = zeros(5,3)
+	i = 1
+	for elem in 1:5
+		j = 1
+		# println("k = $i")
+		for k in 2:2:6
+			# println("j = $j")
+			mat[i,j] = elem * k
+			j += 1
+		end
+		i += 1
+	end
+	mat
+end
+
+# ╔═╡ e5231005-4355-43bb-81d1-93bdebeefb9e
+begin
+	vec3 = [elem * k for elem in 1:5 for k in 2:2:6]
+	mat3 = reshape(vec3, 5, 3)
+end
+
+# ╔═╡ 677e5106-2200-47d6-a058-98f83a5cce9e
+md"# Lenguajes"
+
+# ╔═╡ 1694152d-ab2b-4751-bcc5-21ca8fb92f2a
+begin
+	A = ["aba", "abb"]
+	B = ["ab", "bb"]
+	function concatenacion(A,B)
+		return [cadena_A * cadena_B for cadena_A in A for cadena_B in B]
+	end
+	concatenacion(A,B)
+end
+
+# ╔═╡ 7e1d9ebb-9d93-468f-b417-ae8abd7afe3f
+function potencia(A, n::Int)
+	for i in 1:n
+		result = concatenacion(A,A)
+	end
+	return result
+end
+
+# ╔═╡ 5174e2be-cbf5-4f7f-8fef-9b14b71a3aae
+potencia(A, 3)
+
+# ╔═╡ 5647a1fc-161f-4d6c-9b00-0a86ac998ec0
+md"# Automatas finitos"
+
 # ╔═╡ af8c8434-14a5-11f0-2eb7-a3f6932bfe96
 # Función de transición δ
 δ = Dict(
@@ -81,24 +166,8 @@ begin
 	end
 end
 
-# ╔═╡ 1694152d-ab2b-4751-bcc5-21ca8fb92f2a
-begin
-	A = ["aba", "abb"]
-	B = ["ab", "bb"]
-	function concatenacion(A,B)
-		[cadena_A * cadena_B for cadena_A in A for cadena_B in B]
-	end
-	concatenacion(A,B)
-end
-
 # ╔═╡ b534ae99-ec66-48e8-9f00-f33559495a6a
 
-
-# ╔═╡ 28dbd317-4548-4ab6-902b-a11796c8bada
-[elem for elem in 1:5]
-
-# ╔═╡ a404b63c-3396-459f-93d3-50a1e4e2562b
-[elem * k for elem in 1:5 for k in 2:2:6]
 
 # ╔═╡ 1f924810-88ff-4775-9eef-d54d6e78c4fc
 
@@ -116,6 +185,20 @@ md"# Tests"
 "q0" in F
 
 # ╔═╡ Cell order:
+# ╠═c8c8b862-4876-4c51-8fe3-b84cbf2e7b19
+# ╠═79b2cc2d-b57a-4f89-a39c-ba468b2c13f8
+# ╠═db0c9e40-98e0-4bba-b4c6-cfeed394fbea
+# ╠═28dbd317-4548-4ab6-902b-a11796c8bada
+# ╠═fb1f4842-75aa-4587-ac55-c7c944ff4f4d
+# ╠═ac2b3718-51bc-45a5-a063-c4122bda6659
+# ╠═a404b63c-3396-459f-93d3-50a1e4e2562b
+# ╠═a6d3d97c-9beb-48af-9cfe-177e710d36b5
+# ╠═e5231005-4355-43bb-81d1-93bdebeefb9e
+# ╠═677e5106-2200-47d6-a058-98f83a5cce9e
+# ╠═1694152d-ab2b-4751-bcc5-21ca8fb92f2a
+# ╠═7e1d9ebb-9d93-468f-b417-ae8abd7afe3f
+# ╠═5174e2be-cbf5-4f7f-8fef-9b14b71a3aae
+# ╠═5647a1fc-161f-4d6c-9b00-0a86ac998ec0
 # ╠═af8c8434-14a5-11f0-2eb7-a3f6932bfe96
 # ╠═f008773b-4b57-4bf0-ba07-f085af1c1d75
 # ╠═1a5f4164-9352-408b-b642-a7ed48257701
@@ -123,10 +206,7 @@ md"# Tests"
 # ╠═81ae00e6-bb14-43da-b37a-a0221261fb9f
 # ╠═adfc2d30-bf09-4fd1-b4fc-b4467e01c918
 # ╠═81b851bb-fd9e-4108-b796-2ffdc93434d8
-# ╠═1694152d-ab2b-4751-bcc5-21ca8fb92f2a
 # ╠═b534ae99-ec66-48e8-9f00-f33559495a6a
-# ╠═28dbd317-4548-4ab6-902b-a11796c8bada
-# ╠═a404b63c-3396-459f-93d3-50a1e4e2562b
 # ╟─1f924810-88ff-4775-9eef-d54d6e78c4fc
 # ╟─7cc74817-f803-4117-a3d2-1bf34fca907e
 # ╠═fb6a0c80-d629-40cf-b13c-00b42d5d05c1
