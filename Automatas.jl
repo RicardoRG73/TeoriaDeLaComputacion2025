@@ -65,26 +65,50 @@ end
 # ╔═╡ 677e5106-2200-47d6-a058-98f83a5cce9e
 md"# Lenguajes"
 
+# ╔═╡ b4fe360b-8893-46e3-bf7b-a27950398893
+"""
+Concatenación de lenguajes `A`, `B`.
+
+```
+julia> A = [\"aba\", \"abb\"]
+julia> B = [\"ab\", \"bb\"]
+julia> concatenacion(A,B)
+4-element Vector{String}:
+ \"abaab\"
+ \"ababb\"
+ \"abbab\"
+ \"abbbb\"
+```
+"""
+function concatenacion(A,B)
+	return [cadena_A * cadena_B for cadena_A in A for cadena_B in B]
+end
+
 # ╔═╡ 1694152d-ab2b-4751-bcc5-21ca8fb92f2a
 begin
 	A = ["aba", "abb"]
 	B = ["ab", "bb"]
-	function concatenacion(A,B)
-		return [cadena_A * cadena_B for cadena_A in A for cadena_B in B]
-	end
 	concatenacion(A,B)
 end
 
 # ╔═╡ 7e1d9ebb-9d93-468f-b417-ae8abd7afe3f
 function potencia(A, n::Int)
-	for i in 1:n
-		result = concatenacion(A,A)
+	concat = A
+	if n == 0 # potencia 0 (A⁰)
+		concat = [""]
+	elseif n == 1 # potencia 1 (A¹)
+		return concat
+	else
+		for i in 2:n # sigientes potencias (A², A³, …)
+			concat = concatenacion(concat,A)
+		end
 	end
-	return result
+	return concat
 end
 
 # ╔═╡ 5174e2be-cbf5-4f7f-8fef-9b14b71a3aae
-potencia(A, 3)
+# test de la función potencia
+potencia(A, 2)
 
 # ╔═╡ 5647a1fc-161f-4d6c-9b00-0a86ac998ec0
 md"# Automatas finitos"
@@ -195,6 +219,7 @@ md"# Tests"
 # ╠═a6d3d97c-9beb-48af-9cfe-177e710d36b5
 # ╠═e5231005-4355-43bb-81d1-93bdebeefb9e
 # ╠═677e5106-2200-47d6-a058-98f83a5cce9e
+# ╠═b4fe360b-8893-46e3-bf7b-a27950398893
 # ╠═1694152d-ab2b-4751-bcc5-21ca8fb92f2a
 # ╠═7e1d9ebb-9d93-468f-b417-ae8abd7afe3f
 # ╠═5174e2be-cbf5-4f7f-8fef-9b14b71a3aae
